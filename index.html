@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr.Cool - AI Assistant</title>
+    <meta name="description" content="Mr.Cool - Your intelligent AI assistant for all your questions">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-animation"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">🤖</div>
+                <div class="logo-text">
+                    <h1>Mr.Cool</h1>
+                    <p class="subtitle">Your Intelligent AI Assistant</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="chat-container">
+            <!-- Suggested Prompts -->
+            <div id="suggestedPrompts" class="suggested-prompts">
+                <h3>💡 Try asking:</h3>
+                <div class="prompt-buttons">
+                    <button class="prompt-btn" data-prompt="Explain quantum computing in simple terms">🔬 Quantum
+                        Computing</button>
+                    <button class="prompt-btn" data-prompt="Write a creative story about a robot">📖 Creative
+                        Story</button>
+                    <button class="prompt-btn" data-prompt="Give me 5 productivity tips">⚡ Productivity Tips</button>
+                    <button class="prompt-btn" data-prompt="Explain how AI works">🤖 How AI Works</button>
+                </div>
+            </div>
+
+            <!-- Chat History -->
+            <div id="chatHistory" class="chat-history hidden"></div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="input-header">
+                    <label for="userInput" class="input-label">What's on your mind?</label>
+                    <span id="charCounter" class="char-counter">0 / 1000</span>
+                </div>
+                <textarea id="userInput"
+                    placeholder="Ask me anything... Try: 'Explain quantum computing in simple terms'" rows="4"
+                    maxlength="1000"></textarea>
+                <div class="button-group">
+                    <button id="clearButton" class="clear-button" title="Clear chat history">
+                        🗑️ Clear Chat
+                    </button>
+                    <button id="askButton" class="ask-button">
+                        <span class="button-text">Ask Mr.Cool</span>
+                        <span class="button-icon">✨</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="loadingIndicator" class="loading-indicator hidden">
+                <div class="spinner"></div>
+                <p>Mr.Cool is thinking...</p>
+            </div>
+
+            <div id="errorMessage" class="error-message hidden"></div>
+        </main>
+
+        <footer>
+            <p>Powered by Mr.Cool AI • Built with ❤️ using FastAPI & Gemini</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
