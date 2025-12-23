@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mr.Cool – AI Assistant</title>
-  <meta name="description" content="Mr.Cool - Your intelligent AI assistant" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Mr.Cool - Your intelligent AI assistant"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 
 <body>
   <div class="background-animation"></div>
 
   <div class="container">
+    <!-- HEADER -->
     <header>
       <div class="logo-container">
         <div class="logo-icon">🤖</div>
@@ -22,35 +23,47 @@
       </div>
     </header>
 
+    <!-- CHAT -->
     <main class="chat-container">
       <!-- Suggested Prompts -->
       <div id="suggestedPrompts" class="suggested-prompts">
         <h3>💡 Try asking</h3>
         <div class="prompt-buttons">
-          <button class="prompt-btn" data-prompt="Explain quantum computing simply">🔬 Quantum Computing</button>
-          <button class="prompt-btn" data-prompt="Write a short story about a robot">📖 Creative Story</button>
-          <button class="prompt-btn" data-prompt="Give me productivity tips">⚡ Productivity</button>
-          <button class="prompt-btn" data-prompt="How does AI work?">🤖 How AI Works</button>
+          <button class="prompt-btn" data-prompt="Explain quantum computing simply">
+            🔬 Quantum Computing
+          </button>
+          <button class="prompt-btn" data-prompt="Write a short story about a robot">
+            📖 Creative Story
+          </button>
+          <button class="prompt-btn" data-prompt="Give me productivity tips">
+            ⚡ Productivity
+          </button>
+          <button class="prompt-btn" data-prompt="How does AI work?">
+            🤖 How AI Works
+          </button>
         </div>
       </div>
 
       <!-- Chat History -->
       <div id="chatHistory" class="chat-history hidden"></div>
 
-      <!-- Input Section -->
+      <!-- Input -->
       <div class="input-section">
         <div class="input-header">
-          <label class="input-label">Ask something</label>
+          <label>Ask something</label>
           <span id="charCounter" class="char-counter">0 / 1000</span>
         </div>
 
-        <textarea id="userInput" rows="4" maxlength="1000"
-          placeholder="Ask me anything..."></textarea>
+        <textarea
+          id="userInput"
+          placeholder="Ask me anything..."
+          maxlength="1000"
+        ></textarea>
 
         <div class="button-group">
           <button id="clearButton" class="clear-button">🗑 Clear</button>
           <button id="askButton" class="ask-button">
-            Ask Mr.Cool <span class="button-icon">✨</span>
+            Ask Mr.Cool ✨
           </button>
         </div>
       </div>
@@ -58,13 +71,14 @@
       <!-- Loading -->
       <div id="loadingIndicator" class="loading-indicator hidden">
         <div class="spinner"></div>
-        <p>Thinking...</p>
+        <p>Mr.Cool is thinking...</p>
       </div>
 
       <!-- Error -->
       <div id="errorMessage" class="error-message hidden"></div>
     </main>
 
+    <!-- FOOTER -->
     <footer>
       <p>© 2025 Mr.Cool AI • Powered by FastAPI & Gemini</p>
     </footer>

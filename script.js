@@ -19,7 +19,7 @@ document.querySelectorAll(".prompt-btn").forEach(btn => {
   };
 });
 
-askButton.onclick = handleAskAI;
+askButton.onclick = handleAsk;
 clearButton.onclick = clearChat;
 userInput.oninput = updateCharCounter;
 
@@ -27,16 +27,15 @@ function updateCharCounter() {
   charCounter.innerText = `${userInput.value.length} / 1000`;
 }
 
-async function handleAskAI() {
+async function handleAsk() {
   const prompt = userInput.value.trim();
-  if (!prompt) return showError("Enter a question");
+  if (!prompt) return showError("Please enter a prompt");
 
   if (!messages.length) suggestedPrompts.classList.add("hidden");
 
   addMessage("user", prompt);
   userInput.value = "";
   updateCharCounter();
-
   showLoading();
 
   try {
@@ -51,29 +50,33 @@ async function handleAskAI() {
 
     addMessage("ai", data.response);
   } catch {
-    showError("Server error. Try again.");
+    showError("Failed to connect to AI server");
   } finally {
     hideLoading();
   }
 }
 
 function addMessage(type, text) {
-  messages.push({ type, text, time: new Date().toLocaleTimeString() });
+  messages.push({
+    type,
+    text,
+    time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+  });
   renderChat();
 }
 
 function renderChat() {
   chatHistory.innerHTML = "";
-  messages.forEach((m, i) => {
+  messages.forEach((msg, i) => {
     const div = document.createElement("div");
-    div.className = m.type === "user" ? "user-message" : "ai-message";
+    div.className = msg.type === "user" ? "user-message" : "ai-message";
     div.innerHTML = `
       <div class="message-header">
-        <strong>${m.type === "user" ? "You" : "Mr.Cool"}</strong>
-        <span>${m.time}</span>
+        <span>${msg.type === "user" ? "You" : "Mr.Cool"}</span>
+        <span>${msg.time}</span>
       </div>
-      <div>${escapeHtml(m.text)}</div>
-      ${m.type === "ai" ? `<button class="copy-btn" onclick="copyText(${i})">📋 Copy</button>` : ""}
+      <div>${escapeHtml(msg.text)}</div>
+      ${msg.type === "ai" ? `<button class="copy-btn" onclick="copyText(${i})">📋 Copy</button>` : ""}
     `;
     chatHistory.appendChild(div);
   });
@@ -86,7 +89,6 @@ function copyText(i) {
 }
 
 function clearChat() {
-  if (!messages.length) return;
   messages = [];
   chatHistory.innerHTML = "";
   chatHistory.classList.add("hidden");
